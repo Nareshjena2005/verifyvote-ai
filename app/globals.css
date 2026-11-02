@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+}
+
+@theme {
+  --color-navy-950: #070f1f;
+  --color-navy-900: #0b1b3a;
+  --color-navy-800: #12284f;
+  --color-navy-700: #1b3a6b;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  @apply bg-white font-sans text-slate-800 antialiased dark:bg-navy-950 dark:text-slate-200;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary { @apply bg-teal-600 text-white hover:bg-teal-700; }
+  .btn-navy { @apply bg-navy-900 text-white hover:bg-navy-700 dark:bg-white dark:text-navy-900 dark:hover:bg-slate-200; }
+  .btn-ghost { @apply border border-slate-300 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-navy-800; }
+  .input {
+    @apply w-full rounded-md border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-teal-500 dark:border-slate-700 dark:bg-navy-900 dark:text-slate-100;
+  }
+  .panel {
+    @apply rounded-lg border border-slate-200 bg-white dark:border-navy-700 dark:bg-navy-900;
+  }
+  .page-wrap { @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8; }
+  .field-error { @apply mt-1.5 text-sm text-red-600 dark:text-red-400; }
+}
